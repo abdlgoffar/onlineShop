@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imageViewProduct"
             android:layout_width="match_parent"
-            android:layout_height="173dp"
+            android:layout_height="160dp"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -33,6 +33,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Price"
+            android:textSize="11sp"
+            android:paddingTop="4dp" />
+        <TextView
+            android:id="@+id/textViewProductSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Size"
             android:textSize="11sp"
             android:paddingTop="4dp" />
     </LinearLayout>

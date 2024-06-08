@@ -6,6 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.onlineshop.models.data.Product
+import java.text.NumberFormat
+import java.util.Locale
 
 class ProductDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +16,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
 
         val imageView: ImageView = findViewById(R.id.imageView)
-        val nameTextView: TextView = findViewById(R.id.nameTextView)
+       val nameTextView: TextView = findViewById(R.id.nameTextView)
         val priceTextView: TextView = findViewById(R.id.priceTextView)
 
         // Mendapatkan data dari intent
@@ -22,7 +24,14 @@ class ProductDetailActivity : AppCompatActivity() {
 
         // Menampilkan data ke layout detail
         Glide.with(this).load(product?.imageUrl).into(imageView)
-        nameTextView.text = product?.name
-        priceTextView.text = product?.price
+        nameTextView.text =  product?.name
+
+        val price = product?.price ?: 0
+
+        // Membuat format Rupiah
+        val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+        val formattedPrice = formatter.format(price).replace("Rp", "Rp. ")
+
+        priceTextView.text = formattedPrice
     }
 }

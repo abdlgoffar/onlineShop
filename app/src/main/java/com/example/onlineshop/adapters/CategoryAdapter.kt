@@ -27,6 +27,23 @@ class CategoryAdapter(private val categoryList: List<Category>) :
         val category = categoryList[position]
         holder.categoryName.text = category.name
         holder.categoryImage.setImageResource(category.img)
+
+        holder.itemView.setOnClickListener {
+            click.onItemClick(categoryList[holder.adapterPosition])
+        }
+
+    }
+
+    //INTERFACE FOR CALLBACK ADAPTER, IN ANOTHER PLACE
+    interface onClick {
+        fun onItemClick(data: Category)
+    }
+
+    private lateinit var click: onClick //variable for instantiation onClick interface
+
+    //method for setter variable instantiation onClick interface
+    fun setterClick(click: onClick) {
+        this.click = click
     }
 
     override fun getItemCount(): Int = categoryList.size

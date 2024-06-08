@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.onlineshop.R
 import com.example.onlineshop.models.data.Product
+import java.text.NumberFormat
+import java.util.Locale
 
 
 // OLD CLASS ADAPTER
@@ -56,6 +58,7 @@ class ProductAdapter(private val productList: List<Product>) :
         val imageViewProduct: ImageView = itemView.findViewById(R.id.imageViewProduct)
         val textViewProductName: TextView = itemView.findViewById(R.id.textViewProductName)
         val textViewProductPrice: TextView = itemView.findViewById(R.id.textViewProductPrice)
+        val textViewProductSize: TextView = itemView.findViewById(R.id.textViewProductSize)
 
         init {
             // Menambahkan onClickListener ke itemView (item dalam recyclerView)
@@ -79,7 +82,15 @@ class ProductAdapter(private val productList: List<Product>) :
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val currentProduct = productList[position]
         holder.textViewProductName.text = currentProduct.name
-        holder.textViewProductPrice.text = currentProduct.price
+
+        val price = currentProduct.price ?: 0
+
+        // Membuat format Rupiah
+        val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+        val formattedPrice = formatter.format(price).replace("Rp", "Rp. ")
+
+        holder.textViewProductPrice.text = formattedPrice
+        holder.textViewProductSize.text = "Size " + currentProduct.size
         Glide.with(holder.itemView.context)
             .load(currentProduct.imageUrl)
             .into(holder.imageViewProduct)

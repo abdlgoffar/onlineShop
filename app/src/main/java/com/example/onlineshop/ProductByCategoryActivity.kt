@@ -4,45 +4,27 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-
-import androidx.viewpager2.widget.ViewPager2
-import com.example.onlineshop.adapters.CategoryAdapter
 import com.example.onlineshop.adapters.ProductAdapter
-import com.example.onlineshop.adapters.RewardAdapter
-import com.example.onlineshop.adapters.SliderAdapter
 import com.example.onlineshop.api.RetrofitConfiguration
 import com.example.onlineshop.models.data.Category
-import com.example.onlineshop.models.data.Product
-import com.example.onlineshop.models.data.Reward
+import com.example.onlineshop.models.response.GetAllProductByCategoryResponse
 import com.example.onlineshop.models.response.GetAllProductResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
-
-    lateinit var imgProfile: ImageView
-
+class ProductByCategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_product_by_category)
 
-        imgProfile = findViewById(R.id.circularImageView)
-        imgProfile.setImageResource(R.drawable.man)
-
-//      Slider Adapter
-        val viewPager: ViewPager2 = findViewById(R.id.viewPager)
-        val imageUrls = listOf(
-            "https://img.freepik.com/free-photo/medium-shot-islamic-woman-lifestyle_23-2151064032.jpg?t=st=1717689531~exp=1717693131~hmac=ab4ea24a8a229fff13334130142dd7d17a19f8aa407cd36e2903e74437195a20&w=900"  )
-        val adapter = SliderAdapter(imageUrls)
-        viewPager.adapter = adapter
+        val category = intent.getParcelableExtra<Category>("category")
 
 
-//      Products Adapter
+
+        //      Products Adapter
         val recyclerViewProduct: RecyclerView = findViewById(R.id.recyclerView)
         recyclerViewProduct.layoutManager = GridLayoutManager(this, 2)
 //        val productList = listOf(
@@ -65,15 +47,15 @@ class MainActivity : AppCompatActivity() {
 //            Product("Hijab Arabian", "https://images.tokopedia.net/img/cache/200-square/hDjmkQ/2023/3/1/8c43d017-4f92-42a5-b9bb-01798c4071aa.jpg", "Rp.900.000.00")
 //        )
 
-        val getAllProduct = RetrofitConfiguration.getApiService().getAllProduct();
+        val getAllProduct = RetrofitConfiguration.getApiService().getAllProductByCategory(category?.name);
         getAllProduct.enqueue(
-            object: Callback<GetAllProductResponse> {
+            object: Callback<GetAllProductByCategoryResponse> {
                 override fun onResponse(
-                    call: Call<GetAllProductResponse>,
-                    response: Response<GetAllProductResponse>
+                    call: Call<GetAllProductByCategoryResponse>,
+                    response: Response<GetAllProductByCategoryResponse>
                 ) {
                     if (response.body() === null) {
-                        Log.e("MainActivity", "Response data get all product is null")
+                        Log.e("ProductByCategoryActivity", "Response data get all product by category is null")
                     } else {
                         val result = response.body()?.data;
                         recyclerViewProduct.adapter = result?.let { ProductAdapter(it) }
@@ -88,69 +70,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<GetAllProductResponse>, t: Throwable) {
-                    Log.e("MainActivity", t.message.toString())
+                override fun onFailure(call: Call<GetAllProductByCategoryResponse>, t: Throwable) {
+                    Log.e("ProductByCategoryActivity", t.message.toString())
                 }
 
             }
         )
 
-
-//      Categories Adapter
-        val recyclerViewCategory: RecyclerView = findViewById(R.id.recycler_view_category)
-        recyclerViewCategory.layoutManager = GridLayoutManager(this, 5)
-        val categories = listOf(
-
-//            Category("Bag", R.drawable.bag),
-//            Category("clothes", R.drawable.clothes),
-//            Category("Computer", R.drawable.computer),
-//            Category("Glasses", R.drawable.glasses),
-//            Category("Bowl", R.drawable.bowl),
-//            Category("Dress", R.drawable.dress),
-//            Category("Hat", R.drawable.hat),
-//            Category("Lipstick", R.drawable.ipstick),
-//            Category("Shoes", R.drawable.shoes),
-//            Category("Television", R.drawable.television)
-            Category("Muslim pria", R.drawable.man_clothes),
-            Category("Tasbih", R.drawable.tasbih),
-            Category("Sajadah", R.drawable.sajadah),
-            Category("Surban", R.drawable.cap_surban),
-            Category("Gelang tasbih", R.drawable.gelang_tasbih),
-            Category("Muslim wanita", R.drawable.woman_clothes),
-            Category("Songkok", R.drawable.cap_man),
-            Category("Hijab", R.drawable.hijab),
-            Category("Songkok Anak", R.drawable.cap_kids),
-            Category("Surban kasmiri", R.drawable.kasmiri_surban),
-            )
-        val adapterCategory = CategoryAdapter(categories)
-        recyclerViewCategory.adapter = adapterCategory
-
-        adapterCategory.setterClick(
-            object: CategoryAdapter.onClick {
-                override fun onItemClick(data: Category) {
-                    val intent = Intent(applicationContext, ProductByCategoryActivity::class.java)
-                    intent.putExtra("category", data)
-                    startActivity(intent)
-                }
-
-            }
-        )
-        
-//      Reward Adapter
-        val recyclerViewReward: RecyclerView = findViewById(R.id.recyclerViewReward)
-        recyclerViewReward.layoutManager = GridLayoutManager(this, 4)
-        val rewards = listOf(
-            Reward("Token", R.drawable.baseline_generating_tokens_24, "Beli token listrik"),
-            Reward("Coupon Discount", R.drawable.baseline_discount_24, "Dapatkan Potongan harga"),
-            Reward("Coin", R.drawable.baseline_monetization_on_24, "Kumpulkan hadiah coin"),
-            Reward("Cashback", R.drawable.money_24, "Dapatkan hadiah cahback"),
-        )
-        recyclerViewReward.adapter = RewardAdapter(rewards)
     }
-
-
-
-
-
-
 }

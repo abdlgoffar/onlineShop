@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         val adapter = SliderAdapter(imageUrls)
         viewPager.adapter = adapter
 
-
 //      Products Adapter
         val recyclerViewProduct: RecyclerView = findViewById(R.id.recyclerView)
         recyclerViewProduct.layoutManager = GridLayoutManager(this, 2)
@@ -75,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                     if (response.body() === null) {
                         Log.e("MainActivity", "Response data get all product is null")
                     } else {
+                        //set data
                         val result = response.body()?.data;
                         recyclerViewProduct.adapter = result?.let { ProductAdapter(it) }
 
@@ -87,7 +87,6 @@ class MainActivity : AppCompatActivity() {
 
                     }
                 }
-
                 override fun onFailure(call: Call<GetAllProductResponse>, t: Throwable) {
                     Log.e("MainActivity", t.message.toString())
                 }
@@ -135,7 +134,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         )
-        
+
 //      Reward Adapter
         val recyclerViewReward: RecyclerView = findViewById(R.id.recyclerViewReward)
         recyclerViewReward.layoutManager = GridLayoutManager(this, 4)

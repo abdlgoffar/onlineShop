@@ -3,6 +3,7 @@ package com.example.onlineshop.api
 import com.example.onlineshop.models.response.GetAllProductByCategoryResponse
 import com.example.onlineshop.models.response.GetAllProductResponse
 import com.example.onlineshop.models.response.UserLoginResponse
+import com.example.onlineshop.models.response.UserOrderResponse
 import com.example.onlineshop.models.response.UserRegisterResponse
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -24,4 +25,7 @@ interface ApiRequest {
 
     @POST("users/login")
     fun loginUser(@Body requestBody: RequestBody): Call<UserLoginResponse>
+
+    @POST("users/order")
+    fun orderUser(@Body requestBody: RequestBody): Call<UserOrderResponse>
 }

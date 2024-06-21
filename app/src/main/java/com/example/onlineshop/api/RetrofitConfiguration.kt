@@ -7,7 +7,8 @@ class RetrofitConfiguration {
 
     companion object{
 
-        private const val url = "http://192.168.1.32:8000/api/"
+        private const val url = "http://192.168.200.110:8000/api/"
+
 
         fun getApiService(): ApiRequest{
             val retrofit = Retrofit.Builder()

@@ -15,6 +15,7 @@ import com.example.onlineshop.adapters.ProductAdapter
 import com.example.onlineshop.adapters.RewardAdapter
 import com.example.onlineshop.adapters.SliderAdapter
 import com.example.onlineshop.api.RetrofitConfiguration
+import com.example.onlineshop.helpers.IpAddressV4
 import com.example.onlineshop.models.data.Category
 import com.example.onlineshop.models.data.Product
 import com.example.onlineshop.models.data.Reward
@@ -27,9 +28,14 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var imgProfile: ImageView
 
+    private lateinit var ipAddressV4: IpAddressV4
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        ipAddressV4 = IpAddressV4()
+        ipAddressV4.getLocalIPv4Address()?.let { Log.e("MainActivity", "IP v4 is: $it") }
 
         imgProfile = findViewById(R.id.circularImageView)
         imgProfile.setImageResource(R.drawable.man)

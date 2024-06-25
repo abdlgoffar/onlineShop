@@ -42,10 +42,10 @@ class MainActivity : AppCompatActivity() {
 
 //      Slider Adapter
         val viewPager: ViewPager2 = findViewById(R.id.viewPager)
-        val imageUrls = listOf(
-            "https://img.freepik.com/free-photo/medium-shot-islamic-woman-lifestyle_23-2151064032.jpg?t=st=1717689531~exp=1717693131~hmac=ab4ea24a8a229fff13334130142dd7d17a19f8aa407cd36e2903e74437195a20&w=900"  )
-        val adapter = SliderAdapter(imageUrls)
-        viewPager.adapter = adapter
+//        val imageUrls = listOf(
+//            "https://img.freepik.com/free-photo/medium-shot-islamic-woman-lifestyle_23-2151064032.jpg?t=st=1717689531~exp=1717693131~hmac=ab4ea24a8a229fff13334130142dd7d17a19f8aa407cd36e2903e74437195a20&w=900"  )
+//        val adapter = SliderAdapter(imageUrls)
+//        viewPager.adapter = adapter
 
 //      Products Adapter
         val recyclerViewProduct: RecyclerView = findViewById(R.id.recyclerView)
@@ -106,26 +106,26 @@ class MainActivity : AppCompatActivity() {
         recyclerViewCategory.layoutManager = GridLayoutManager(this, 5)
         val categories = listOf(
 
-//            Category("Bag", R.drawable.bag),
-//            Category("clothes", R.drawable.clothes),
-//            Category("Computer", R.drawable.computer),
-//            Category("Glasses", R.drawable.glasses),
-//            Category("Bowl", R.drawable.bowl),
-//            Category("Dress", R.drawable.dress),
-//            Category("Hat", R.drawable.hat),
-//            Category("Lipstick", R.drawable.ipstick),
-//            Category("Shoes", R.drawable.shoes),
-//            Category("Television", R.drawable.television)
-            Category("Muslim pria", R.drawable.man_clothes),
-            Category("Tasbih", R.drawable.tasbih),
-            Category("Sajadah", R.drawable.sajadah),
-            Category("Surban", R.drawable.cap_surban),
-            Category("Gelang tasbih", R.drawable.gelang_tasbih),
-            Category("Muslim wanita", R.drawable.woman_clothes),
-            Category("Songkok", R.drawable.cap_man),
-            Category("Hijab", R.drawable.hijab),
-            Category("Songkok Anak", R.drawable.cap_kids),
-            Category("Surban kasmiri", R.drawable.kasmiri_surban),
+            Category("Bag", R.drawable.bag),
+            Category("clothes", R.drawable.clothes),
+            Category("Computer", R.drawable.computer),
+            Category("Glasses", R.drawable.glasses),
+            Category("Bowl", R.drawable.bowl),
+            Category("Dress", R.drawable.dress),
+            Category("Hat", R.drawable.hat),
+            Category("Lipstick", R.drawable.ipstick),
+            Category("Shoes", R.drawable.shoes),
+            Category("Television", R.drawable.television)
+//            Category("Muslim pria", R.drawable.man_clothes),
+//            Category("Tasbih", R.drawable.tasbih),
+//            Category("Sajadah", R.drawable.sajadah),
+//            Category("Surban", R.drawable.cap_surban),
+//            Category("Gelang tasbih", R.drawable.gelang_tasbih),
+//            Category("Muslim wanita", R.drawable.woman_clothes),
+//            Category("Songkok", R.drawable.cap_man),
+//            Category("Hijab", R.drawable.hijab),
+//            Category("Songkok Anak", R.drawable.cap_kids),
+//            Category("Surban kasmiri", R.drawable.kasmiri_surban),
             )
         val adapterCategory = CategoryAdapter(categories)
         recyclerViewCategory.adapter = adapterCategory

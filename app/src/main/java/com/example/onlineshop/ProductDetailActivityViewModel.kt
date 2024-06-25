@@ -43,9 +43,11 @@ class ProductDetailActivityViewModel: ViewModel() {
                     call: Call<UserOrderResponse>,
                     response: Response<UserOrderResponse>
                 ) {
-                    val result = response.body()?.token.toString()
-                    Log.d("ProductDetailActivity", "token: " + result)
-                    setSnapToken(result)
+                    val result = response.body()
+                    Log.d("ProductDetailActivity", "token: " + result.toString())
+                    if (result != null) {
+                        result.token?.let { setSnapToken(it) }
+                    }
                 }
 
                 override fun onFailure(call: Call<UserOrderResponse>, t: Throwable) {

@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()

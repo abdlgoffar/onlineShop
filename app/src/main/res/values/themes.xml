@@ -1,8 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.OnlineShop" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!--  -->
+        <item name="colorPrimary">#09af00</item>
+<!--        battery and time and another-->
+        <item name="colorPrimaryVariant">#008b00</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Warna branding sekunder -->
+<!--        <item name="colorSecondary">@color/dark_green</item>-->
+<!--        <item name="colorSecondaryVariant">@color/dark_green_variant</item>-->
+<!--        <item name="colorOnSecondary">@color/white</item>-->
+        <!-- Warna status bar -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
     </style>
 
     <style name="Theme.OnlineShop" parent="Base.Theme.OnlineShop" />

@@ -53,6 +53,7 @@ class ProductDetailActivity : AppCompatActivity() {
         nameTextView.text = product?.name
 
         val price = product?.price ?: 0
+        val productName = product?.name
 
         // create RP formatter
         val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
@@ -74,7 +75,8 @@ class ProductDetailActivity : AppCompatActivity() {
         orderButton.setOnClickListener {
             this.productDetailViewModel.order(
                 price,
-                Editable.Factory.getInstance().newEditable("Random@gmail.com")
+                Editable.Factory.getInstance().newEditable("Random@gmail.com"),
+                productName
             )
             this.productDetailViewModel.snapToken.observe(this) { token ->
                 UiKitApi.getDefaultInstance().startPaymentUiFlow(
@@ -90,7 +92,7 @@ class ProductDetailActivity : AppCompatActivity() {
         UiKitApi.Builder()
             .withMerchantClientKey("SB-Mid-client-_p6kmur_V447S9Jg")
             .withContext(this) // context is mandatory
-            .withMerchantUrl("https://jualankopihamizan.000webhostapp.com/api/users/order/")
+            .withMerchantUrl("http://192.168.1.18:8000/api/users/order/")
             .enableLog(true) // enable sdk log (optional)
             .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
             .build()

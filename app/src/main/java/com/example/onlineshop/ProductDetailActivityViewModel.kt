@@ -29,11 +29,12 @@ class ProductDetailActivityViewModel: ViewModel() {
         _snapToken.value = value
     }
 
-    fun order(price: Int, username: Editable) {
+    fun order(price: Int, username: Editable, productName: String?) {
 
         val json = JSONObject().apply {
             put("username", username)
             put("price", price)
+            put("product_name", productName)
         }
         val body = json.toString().toRequestBody("application/json".toMediaTypeOrNull())
 

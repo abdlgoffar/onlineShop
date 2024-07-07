@@ -17,11 +17,14 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferencesManagerBoolean: SharedPreferencesManager<Boolean>
 
+    private lateinit var sharedPreferencesManagerString: SharedPreferencesManager<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         this.sharedPreferencesManagerBoolean = SharedPreferencesManager<Boolean>(this)
+        this.sharedPreferencesManagerString = SharedPreferencesManager<String>(this)
 
         val button: Button = findViewById(R.id.loginButton)
         val username: EditText = findViewById(R.id.username)
